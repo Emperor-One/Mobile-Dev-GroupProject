@@ -23,7 +23,7 @@ class GetPublicLeaguesResponse {
 Future<GetPublicLeaguesResponse> getPublicLeagues() async {
   final Map<String, String> headers = {
     "token":
-        "eyJhbGciOiAic2hhMjU2IiwgInR5cGUiOiAiand0In0=.eyJ1c2VyLWlkIjogMiwgImlhdCI6IDE2ODUzNTAzMzUsICJleHAiOiAxNjg2MjUwMzM1fQ==.45b06a94c47145ca6c0973415519a38c23c5b92762ef454aeef9131641eec0bf"
+        "eyJhbGciOiAic2hhMjU2IiwgInR5cGUiOiAiand0In0=.eyJ1c2VyLWlkIjogMiwgImlhdCI6IDE2ODc2MDI1OTksICJleHAiOiA5MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAxNjg3NjAyNTk5fQ==.fe85c21e22c89c1927e8861b74624569962f718c7b8d89764f203ad85749ffc2"
   };
   final response = await http.get(Uri.parse(leaguesBaseUrl), headers: headers);
 
@@ -52,7 +52,7 @@ class GetPlayersResponse {
 Future<GetPlayersResponse> filterPlayers(String position) async {
   final Map<String, String> headers = {
     "token":
-        "eyJhbGciOiAic2hhMjU2IiwgInR5cGUiOiAiand0In0=.eyJ1c2VyLWlkIjogMiwgImlhdCI6IDE2ODUzNTAzMzUsICJleHAiOiAxNjg2MjUwMzM1fQ==.45b06a94c47145ca6c0973415519a38c23c5b92762ef454aeef9131641eec0bf"
+        "eyJhbGciOiAic2hhMjU2IiwgInR5cGUiOiAiand0In0=.eyJ1c2VyLWlkIjogMiwgImlhdCI6IDE2ODc2MDI1OTksICJleHAiOiA5MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAxNjg3NjAyNTk5fQ==.fe85c21e22c89c1927e8861b74624569962f718c7b8d89764f203ad85749ffc2"
   };
   final response = await http.get(Uri.parse(playersBaseUrl), headers: headers);
 
