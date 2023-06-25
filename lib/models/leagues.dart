@@ -47,3 +47,25 @@ class JoinLeagueResponse {
         success: json['success'],  detail: json['detail']);
   }
 }
+
+class User{
+  late int userId;
+  late String userName;
+  late String token;
+  late bool success;
+
+  User({
+    required userId,
+    required userName,
+    required token,
+    required success  });
+
+  factory User.fromJson(Map<String, dynamic> json){
+    return User(
+      userId: json['userId'],
+      userName: json['userName'],
+      token : json['token'],
+      success : json['success']
+    );
+  }
+}

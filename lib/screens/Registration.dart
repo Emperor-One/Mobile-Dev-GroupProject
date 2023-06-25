@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../data_provider/leagues_dataprovider.dart';
 import '../main.dart';
 import 'loginForm.dart';
 import 'leagues.dart';
@@ -181,7 +183,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
               SizedBox(height: 30.0),
               TextButton(
                 onPressed: () {
-                  GoRouter.of(context).push("/LoginFormPage");
+                  UserDataProvider sender = UserDataProvider();
+                  try{
+                    var response = sender.createAccount('test3@gmail.com', '1234', 'test4');
+                    if (response == "Account created successfully!"){
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Sign up was successful") , backgroundColor : Colors.green));                        
+                        GoRouter.of(context).push("/LoginFormPage");
+                    }
+
+                  }catch(error){
+                    ScaffoldMessenger.of(context).clearSnackBars();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Couldn't sign in") , backgroundColor : Colors.red));
+                  }
                 },
                 child: Text(
                   "Already have an account? Sign in",

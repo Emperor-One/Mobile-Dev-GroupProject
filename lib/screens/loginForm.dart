@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../data_provider/leagues_dataprovider.dart';
 import '../main.dart';
 import 'Registration.dart';
 
@@ -96,19 +97,27 @@ class _LoginFormState extends State<LoginForm> {
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
-
-                                if (!(_email == "test2@gmail.com") ||
-                                    !(_password == "1234")) {
-                                  ScaffoldMessenger.of(context)
-                                      .clearSnackBars();
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
-                                    content: Text("Incorrect credentials"),
-                                    backgroundColor: Colors.red,
-                                  ));
-                                } else {
-                                  GoRouter.of(context).go("/nextPage");
+                                UserDataProvider sender = UserDataProvider();
+                                try{
+                                  var response = sender.login(_email!, _password!);
+                                  GoRouter.of(context).go('/nextPage');
                                 }
+                                catch( error) {
+                                  ScaffoldMessenger.of(context).clearSnackBars();
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text("Incorrect Credentials") , backgroundColor : Colors.red));
+                                }
+                                // if (!(_email == "test2@gmail.com") ||
+                                //     !(_password == "1234")) {
+                                //   ScaffoldMessenger.of(context)
+                                //       .clearSnackBars();
+                                //   ScaffoldMessenger.of(context)
+                                //       .showSnackBar(SnackBar(
+                                //     content: Text("Incorrect credentials"),
+                                //     backgroundColor: Colors.red,
+                                //   ));
+                                // } else {
+                                //   GoRouter.of(context).go("/nextPage");
+                                // }
                               }
                             },
                             child: Text(

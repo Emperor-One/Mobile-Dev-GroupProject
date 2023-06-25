@@ -111,3 +111,45 @@ class LeaguesDataProvider {
     }
   }
 }
+
+
+class UserDataProvider{
+  final String _baseUrl = 'http://127.0.0.1:8000/users';
+
+  //login
+  Future<User> login(String email , String password) async{
+    try{
+      final http.Response response = await http.post(Uri.parse('$_baseUrl/login'),
+      body: jsonEncode(<String , String>{
+        "email" : email,
+        "password" : password
+      }));
+      
+      return User.fromJson(jsonDecode(response.body));
+    }
+    
+    catch(error){
+      throw(error);
+    }
+  }
+
+  //createAccount
+  Future<String> createAccount(String email , String password , String UserName) async {
+    final http.Response response = await http.post(Uri.parse(_baseUrl + '/users/'),
+    body: jsonEncode({
+      "userName" : UserName,
+      "password" : password,
+      "email" : email
+    }));
+
+    if (response.statusCode == 201){
+      return 'Account created successfully!';
+    }
+    {
+      throw Exception(jsonDecode(response.body)['detail']);
+    }
+  }
+}
+
+
+
