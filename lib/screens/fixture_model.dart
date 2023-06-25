@@ -1,3 +1,7 @@
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 class fixture_model {
   late int id;
   late int teamIdOne;
@@ -35,5 +39,22 @@ class fixture_model {
     savesHome : json['savesHome'],
     savesAway : json['savesAway']
     );
+  }
+}
+
+class MatchGetter{
+  
+  Future<List<dynamic>> getMatches() async {
+    const String requestUrl = 'http://10.0.2.2:8000/matches/2023-3-25';
+    try{
+      final http.Response response = await http.get(Uri.parse(requestUrl));
+      final matchesMap = jsonDecode(response.body)['matches'];
+      List<dynamic> matches = matchesMap.map((i) => fixture_model.fromJSON(i)).toList();
+      return matches;
+    }
+    catch(error , stackTrace){
+        print(stackTrace);
+        throw(error);
+    }
   }
 }

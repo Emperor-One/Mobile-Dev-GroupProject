@@ -97,7 +97,18 @@ class _LoginFormState extends State<LoginForm> {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
 
-                                GoRouter.of(context).push("/nextPage");
+                                if (!(_email == "test2@gmail.com") ||
+                                    !(_password == "1234")) {
+                                  ScaffoldMessenger.of(context)
+                                      .clearSnackBars();
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text("Incorrect credentials"),
+                                    backgroundColor: Colors.red,
+                                  ));
+                                } else {
+                                  GoRouter.of(context).go("/nextPage");
+                                }
                               }
                             },
                             child: Text(

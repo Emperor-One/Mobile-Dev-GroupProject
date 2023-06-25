@@ -6,8 +6,8 @@ class LeaguesRepository {
   LeaguesRepository(this.dataProvider);
 
   Future<JoinLeagueResponse> joinLeague(
-      int leagueId, String captain, String entryCode, List players) {
-    return dataProvider.joinLeague(leagueId, captain, entryCode, players);
+      int leagueId, String captain, String entryCode, List players, bool isCreated, String leagueName) {
+    return dataProvider.joinLeague(leagueId, captain, entryCode, players, isCreated, leagueName);
   }
 
   Future<GetPlayersResponse> filterPlayers(String position) async {

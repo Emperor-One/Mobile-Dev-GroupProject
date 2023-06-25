@@ -16,13 +16,14 @@ class LeaguePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Hi ,$username'),
+          title: Text('Hi , User'),
           backgroundColor: Color.fromARGB(255, 20, 26, 29),
         ),
         backgroundColor: Color.fromARGB(255, 16, 21, 24),
         body: ListView(
           children: [
             Container(
+              height: 70.0,
               padding: EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,24 +36,25 @@ class LeaguePage extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 10.0),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push("/teamsPage");
-                    },
-                    child: buildLeagueContainer('League - 1', isOwned: false),
-                  ),
-                  SizedBox(height: 10.0),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push("/teamsPage");
-                    },
-                    child: buildLeagueContainer('League - 2', isOwned: false),
-                  ),
+                  // SizedBox(height: 10.0),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     GoRouter.of(context).push("/teamsPage");
+                  //   },
+                  //   child: buildLeagueContainer('League - 1', isOwned: false),
+                  // ),
+                  // SizedBox(height: 10.0),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     GoRouter.of(context).push("/teamsPage");
+                  //   },
+                  //   child: buildLeagueContainer('League - 2', isOwned: false),
+                  // ),
                 ],
               ),
             ),
             Container(
+              height: 70.0,
               padding: EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,24 +67,25 @@ class LeaguePage extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 10.0),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push("/teamssPage");
-                    },
-                    child: buildLeagueContainer('League - 2', isOwned: true),
-                  ),
-                  SizedBox(height: 10.0),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push("/teamssPage");
-                    },
-                    child: buildLeagueContainer('League - 2', isOwned: true),
-                  ),
+                  // SizedBox(height: 10.0),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     GoRouter.of(context).push("/teamssPage");
+                  //   },
+                  //   child: buildLeagueContainer('League - 2', isOwned: true),
+                  // ),
+                  // SizedBox(height: 10.0),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     GoRouter.of(context).push("/teamssPage");
+                  //   },
+                  //   child: buildLeagueContainer('League - 2', isOwned: true),
+                  // ),
                 ],
               ),
             ),
             Container(
+              height: 70.0,
               padding: EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,20 +98,20 @@ class LeaguePage extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 10.0),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push("/teamsPage");
-                    },
-                    child: buildLeagueContainer('League - 1', isOwned: false),
-                  ),
-                  SizedBox(height: 10.0),
-                  GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push("/teamsPage");
-                    },
-                    child: buildLeagueContainer('League - 2', isOwned: false),
-                  ),
+                  // SizedBox(height: 10.0),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     GoRouter.of(context).push("/teamsPage");
+                  //   },
+                  //   child: buildLeagueContainer('League - 1', isOwned: false),
+                  // ),
+                  // SizedBox(height: 10.0),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     GoRouter.of(context).push("/teamsPage");
+                  //   },
+                  //   child: buildLeagueContainer('League - 2', isOwned: false),
+                  // ),
                 ],
               ),
             ),

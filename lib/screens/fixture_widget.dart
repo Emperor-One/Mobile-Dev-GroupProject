@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/fixture_model.dart';
+import 'fixture_model.dart';
 
 class Fixture extends StatefulWidget{
       final fixture_model fixture;

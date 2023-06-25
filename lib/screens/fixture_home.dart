@@ -1,9 +1,7 @@
-import '../models/fixture_model.dart';
+import 'fixture_model.dart';
 import 'package:flutter/material.dart';
 import 'fixture_navigation_widget.dart';
 import 'fixture_widget.dart';
-import '../data_provider/fixture_provider.dart';
-
 
 class FixtureHome extends StatefulWidget {
   const FixtureHome({super.key});

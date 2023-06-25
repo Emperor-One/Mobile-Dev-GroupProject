@@ -71,3 +71,13 @@ class AddAndJoin extends JoinEvent {
   @override
   List<Object> get props => [captain];
 }
+
+class CreateButtonPressed extends JoinEvent {
+  bool isCreated;
+  String leagueName;
+
+  CreateButtonPressed(this.isCreated, this.leagueName);
+
+  @override
+  List<Object> get props => [isCreated, leagueName];
+}

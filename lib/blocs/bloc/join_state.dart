@@ -11,6 +11,8 @@ abstract class JoinState extends Equatable {
 class JoinInitial extends JoinState {}
 
 class AddLeagueState extends JoinState {
+  final String leagueName;
+  final bool isCreated;
   final String entryCode;
   final int private;
   final int leagueId;
@@ -19,7 +21,9 @@ class AddLeagueState extends JoinState {
   final List<int> selected;
 
   const AddLeagueState(
-      {required this.entryCode,
+      {required this.leagueName,
+      required this.isCreated,
+      required this.entryCode,
       required this.private,
       required this.leagueId,
       required this.playerId,
@@ -27,8 +31,16 @@ class AddLeagueState extends JoinState {
       required this.selected});
 
   @override
-  List<Object> get props =>
-      [entryCode, private, leagueId, playerId, position, selected];
+  List<Object> get props => [
+        leagueName,
+        isCreated,
+        entryCode,
+        private,
+        leagueId,
+        playerId,
+        position,
+        selected
+      ];
 }
 
 class JoinedState extends JoinState {
@@ -41,6 +53,8 @@ class JoinedState extends JoinState {
 }
 
 class PlayersState extends JoinState {
+  final String leagueName;
+  final bool isCreated;
   final String entryCode;
   final int private;
   final int leagueId;
@@ -50,7 +64,9 @@ class PlayersState extends JoinState {
   final List<int> selected;
 
   const PlayersState(
-      {required this.entryCode,
+      {required this.leagueName,
+        required this.isCreated,
+      required this.entryCode,
       required this.private,
       required this.leagueId,
       required this.playerId,
@@ -59,6 +75,15 @@ class PlayersState extends JoinState {
       required this.selected});
 
   @override
-  List<Object> get props =>
-      [entryCode, private, leagueId, playerId, playerName, position, selected];
+  List<Object> get props => [
+        leagueName,
+        isCreated,
+        entryCode,
+        private,
+        leagueId,
+        playerId,
+        playerName,
+        position,
+        selected
+      ];
 }

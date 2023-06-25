@@ -9,7 +9,7 @@ class LeaguesDataProvider {
   static const String _playersBaseUrl = "http://10.0.2.2:8000/players/";
 
   static const token =
-      "eyJhbGciOiAic2hhMjU2IiwgInR5cGUiOiAiand0In0=.eyJ1c2VyLWlkIjogMSwgImlhdCI6IDE2ODU3MzAzMjksICJleHAiOiA5MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAxNjg1NzMwMzI5fQ==.e90891de011e4adf5de1b2dd25c4fc160e95429967f41f21e3f87963401de978";
+      "eyJhbGciOiAic2hhMjU2IiwgInR5cGUiOiAiand0In0=.eyJ1c2VyLWlkIjogMiwgImlhdCI6IDE2ODc2MDI1OTksICJleHAiOiA5MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAxNjg3NjAyNTk5fQ==.fe85c21e22c89c1927e8861b74624569962f718c7b8d89764f203ad85749ffc2";
   static const Map<String, String> fetchHeader = {"token": token};
 
   Future<GetPublicLeaguesResponse> getPublicLeagues() async {
@@ -41,8 +41,8 @@ class LeaguesDataProvider {
     }
   }
 
-  Future<JoinLeagueResponse> joinLeague(
-      int leagueId, String captain, String entryCode, List players) async {
+  Future<JoinLeagueResponse> joinLeague(int leagueId, String captain,
+      String entryCode, List players, bool isCreated, String leagueName) async {
     Map<String, int> captainToIndex = {
       "Goal Keeper": 0,
       "Defender": 2,
@@ -75,7 +75,22 @@ class LeaguesDataProvider {
       "token": token,
       "Content-Type": "application/json"
     };
+
+    if (isCreated) {
+      final http.Response response =
+          await http.post(Uri.parse("$_leaguesBaseUrl"),
+              headers: postHeader,
+              body: jsonEncode({
+                "name": leagueName,
+                "tournament_id": 17,
+                "entry_code": entryCode,
+                "players": playerInfoToSend
+              }));
+    }
     try {
+      if (isCreated) {
+        throw ("Created leagued! No Need to call join!");
+      }
       final http.Response response = await http.post(
           Uri.parse("$_leaguesBaseUrl$leagueId/teams"),
           headers: postHeader,

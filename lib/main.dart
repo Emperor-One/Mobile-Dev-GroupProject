@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'repository/leagues_repository.dart';
 import 'data_provider/leagues_dataprovider.dart';
 import 'blocs/bloc/join_bloc.dart';
-import 'models/fixture_model.dart';
 
 import 'screens/join_league.dart';
 import 'screens/page_view.dart';

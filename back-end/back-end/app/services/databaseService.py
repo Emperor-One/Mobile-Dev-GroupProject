@@ -220,7 +220,7 @@ class Player:
             raise e 
 
     @staticmethod
-    def getAllPlayers(offset : int = 0 , limit : int = 50):
+    def getAllPlayers(offset : int = 0 , limit : int = 600):
         query = Player.model.select().offset(offset=offset).limit(limit=limit)
         try:
             players = []
@@ -243,7 +243,7 @@ class Player:
             raise e
 
     @staticmethod
-    def filterPlayers(teamId : int = None , maxPrice : float = float("inf") , minPrice : float = 0 , offset : int = 0 , limit : int = 50):
+    def filterPlayers(teamId : int = None , maxPrice : float = float("inf") , minPrice : float = 0 , offset : int = 0 , limit : int = 600):
         if all(x is None for x in (teamId , maxPrice , minPrice)):
             return Player.getAllPlayers(offset=offset , limit=limit)
         elif teamId == None:

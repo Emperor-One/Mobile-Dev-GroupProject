@@ -16,6 +16,8 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
       if (state is JoinInitial || state is JoinedState) {
         await Future.delayed(Duration(seconds: 1));
         emit(AddLeagueState(
+          leagueName: "",
+            isCreated: false,
             private: 0,
             entryCode: "",
             leagueId: event.leagueId,
@@ -25,6 +27,8 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
       } else if (state is AddLeagueState || state is PlayersState) {
         await Future.delayed(Duration(seconds: 1));
         emit(AddLeagueState(
+          leagueName: "",
+            isCreated: false,
             private: 0,
             entryCode: "",
             leagueId: event.leagueId,
@@ -37,6 +41,8 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
       if (state is AddLeagueState) {
         final state = this.state as AddLeagueState;
         emit(PlayersState(
+            leagueName: state.leagueName,
+            isCreated: state.isCreated,
             entryCode: state.entryCode,
             private: state.private,
             playerId: state.playerId,
@@ -77,6 +83,8 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
 
         state.selected[index] = event.playerId;
         emit(AddLeagueState(
+          leagueName: state.leagueName,
+            isCreated: state.isCreated,
             entryCode: state.entryCode,
             private: state.private,
             leagueId: state.leagueId,
@@ -89,6 +97,8 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
       if (state is PlayersState) {
         final state = this.state as PlayersState;
         emit(PlayersState(
+          leagueName: state.leagueName,
+          isCreated: state.isCreated,
           entryCode: state.entryCode,
           private: state.private,
           leagueId: state.leagueId,
@@ -100,10 +110,21 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
       }
     });
 
-    on<AddAndJoin>((event, emit) async{
+    on<AddAndJoin>((event, emit) async {
       if (state is AddLeagueState) {
         final state = this.state as AddLeagueState;
-        await leaguesRepository.joinLeague(state.leagueId, event.captain, state.entryCode, state.selected);
+        if (state.isCreated) {
+          await leaguesRepository.joinLeague(
+              state.leagueId,
+              event.captain,
+              state.entryCode,
+              state.selected,
+              state.isCreated,
+              state.leagueName);
+        } else {
+          await leaguesRepository.joinLeague(state.leagueId, event.captain,
+              state.entryCode, state.selected, state.isCreated, "");
+        }
         emit(JoinedState(leagueId: state.leagueId));
       }
     });
@@ -111,6 +132,8 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
     on<JoinPrivateLeague>((event, emit) {
       if (state is JoinInitial || state is JoinedState) {
         emit(AddLeagueState(
+            leagueName: "",
+            isCreated: false,
             entryCode: event.entryCode,
             private: 1,
             leagueId: event.leagueId,
@@ -119,5 +142,21 @@ class JoinBloc extends Bloc<JoinEvent, JoinState> {
             selected: [0, 0, 0, 0, 0]));
       }
     });
+
+    on<CreateButtonPressed>(
+      (event, emit) {
+        if (state is JoinInitial) {
+          emit(AddLeagueState(
+              leagueName: event.leagueName,
+              isCreated: true,
+              entryCode: "",
+              private: 0,
+              leagueId: 0,
+              playerId: 0,
+              position: "",
+              selected: [0, 0, 0, 0, 0]));
+        }
+      },
+    );
   }
 }

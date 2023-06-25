@@ -54,7 +54,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   return null;
                 },
                 onSaved: (value) {
+                  setState(() {
                   _username = value;
+                  });
                 },
               ),
               SizedBox(height: 10.0),
@@ -80,7 +82,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   return null;
                 },
                 onSaved: (value) {
+                  setState(() {
                   _email = value;
+                  });
                 },
               ),
               SizedBox(height: 10.0),
@@ -106,49 +110,54 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   }
                   return null;
                 },
-                onSaved: (value) {
-                  _password = value!;
+                onChanged: (value) {
+                  setState(() {
+                  _password = value;
+                  });
                 },
               ),
               SizedBox(height: 10.0),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Confirm Password',
-                  prefixIcon: Icon(Icons.key,
-                      color: Color.fromARGB(255, 185, 175, 175)),
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.horizontal(
-                      left: Radius.circular(20.0),
-                      right: Radius.circular(20.0),
-                    ),
-                  ),
-                  fillColor: Color.fromARGB(255, 67, 83, 94),
-                  filled: true,
-                ),
-                obscureText: true,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please confirm your password';
-                  }
+              // TextFormField(
+              //   decoration: const InputDecoration(
+              //     labelText: 'Confirm Password',
+              //     prefixIcon: Icon(Icons.key,
+              //         color: Color.fromARGB(255, 185, 175, 175)),
+              //     labelStyle: TextStyle(color: Colors.white),
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.horizontal(
+              //         left: Radius.circular(20.0),
+              //         right: Radius.circular(20.0),
+              //       ),
+              //     ),
+              //     fillColor: Color.fromARGB(255, 67, 83, 94),
+              //     filled: true,
+              //   ),
+              //   obscureText: true,
+              //   validator: (value) {
+              //     if (value!.isEmpty) {
+              //       return 'Please confirm your password';
+              //     }
 
-                  if (_password != null && value == _password) {
-                    return 'Passwords match';
-                  } else {
-                    return 'Passwords do not match';
-                  }
-                },
-                onSaved: (value) {
-                  _confirmPassword = value!;
-                },
-              ),
+              //     if (_password != null && value == _password) {
+              //       return 'Passwords match';
+              //     } else {
+              //       print("PASSWORD: $_password");
+              //       return 'Passwords do not match';
+              //     }
+              //   },
+              //   onChanged: (value) {
+              //     setState(() {
+              //     _confirmPassword = value;
+              //     });
+              //   },
+              // ),
               SizedBox(height: 40.0),
               ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
 
-                      GoRouter.of(context).push("/nextPage");
+                      GoRouter.of(context).go("/LoginFormPage");
                     }
                   },
                   child: Text(
