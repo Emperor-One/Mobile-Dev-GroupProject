@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'dart:math';
 
 import '../data_provider/leagues_dataprovider.dart';
 import '../main.dart';
@@ -161,8 +162,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                       UserDataProvider sender = UserDataProvider();
                       try {
+                        Random randomGenerator = Random();
+                        int randomId = randomGenerator.nextInt(70);
+
                         var response = sender.createAccount(
-                            'test3@gmail.com', '1234', 'test4');
+                            'test$randomId@gmail.com', '1234', 'test$randomId');
                         if (response == "Account created successfully!") {
                           ScaffoldMessenger.of(context).clearSnackBars();
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -198,7 +202,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   )),
               SizedBox(height: 30.0),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.go('/LoginFormPage');
+                },
                 child: Text(
                   "Already have an account? Sign in",
                   style: TextStyle(

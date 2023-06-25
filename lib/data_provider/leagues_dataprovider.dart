@@ -133,7 +133,7 @@ class UserDataProvider {
   //createAccount
   Future<String> createAccount(
       String email, String password, String UserName) async {
-    final http.Response response = await http.post(Uri.parse('$_baseUrl'),
+    final http.Response response = await http.post(Uri.parse('$_baseUrl/'),
         headers: {"Content-Type": "application/json"},
         body: jsonEncode(
             {"userName": UserName, "password": password, "email": email}));
