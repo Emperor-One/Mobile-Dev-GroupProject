@@ -57,7 +57,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 },
                 onSaved: (value) {
                   setState(() {
-                  _username = value;
+                    _username = value;
                   });
                 },
               ),
@@ -85,7 +85,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 },
                 onSaved: (value) {
                   setState(() {
-                  _email = value;
+                    _email = value;
                   });
                 },
               ),
@@ -114,7 +114,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 },
                 onChanged: (value) {
                   setState(() {
-                  _password = value;
+                    _password = value;
                   });
                 },
               ),
@@ -159,7 +159,23 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
 
-                      GoRouter.of(context).go("/LoginFormPage");
+                      UserDataProvider sender = UserDataProvider();
+                      try {
+                        var response = sender.createAccount(
+                            'test3@gmail.com', '1234', 'test4');
+                        if (response == "Account created successfully!") {
+                          ScaffoldMessenger.of(context).clearSnackBars();
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Sign up was successful"),
+                              backgroundColor: Colors.green));
+                          GoRouter.of(context).push("/LoginFormPage");
+                        }
+                      } catch (error) {
+                        ScaffoldMessenger.of(context).clearSnackBars();
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Couldn't sign in"),
+                            backgroundColor: Colors.red));
+                      }
                     }
                   },
                   child: Text(
@@ -182,21 +198,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   )),
               SizedBox(height: 30.0),
               TextButton(
-                onPressed: () {
-                  UserDataProvider sender = UserDataProvider();
-                  try{
-                    var response = sender.createAccount('test3@gmail.com', '1234', 'test4');
-                    if (response == "Account created successfully!"){
-                        ScaffoldMessenger.of(context).clearSnackBars();
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Sign up was successful") , backgroundColor : Colors.green));                        
-                        GoRouter.of(context).push("/LoginFormPage");
-                    }
-
-                  }catch(error){
-                    ScaffoldMessenger.of(context).clearSnackBars();
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Couldn't sign in") , backgroundColor : Colors.red));
-                  }
-                },
+                onPressed: () {},
                 child: Text(
                   "Already have an account? Sign in",
                   style: TextStyle(
