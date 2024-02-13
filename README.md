@@ -1,13 +1,30 @@
 # Soccer Strategist: A Fantasy Football App
 
 ## Description
-Soocer strategist is a simple app that allows users to create the football team of their dreams, and use those teams to compete versus other users in fantasy leagues based on real-world statistcs, player scores, and match results.
+Soccer strategist is a simple app that allows users to create the football team of their dreams, and use those teams to compete versus other users in fantasy leagues based on real-world statistcs, player scores, and match results.
 
-### Group Members (SECTION 2)
+## Features
+* Create leagues (both private and public) to enjoy a weekly competition between friends or anyone online
+* Join leagues
+* Choose a team of five players , users aren't forced to use a single team for every league they join.
+* Beautiful and easy on the eye UI.
 
-| Name              | ID           |
-|:------------------|:-------------|
-| Metsakal Zeleke   | UGR/1027/13  |
-| Milka Fasika      | UGR/7126/13  |
-| Nathan Ezra       | UGR/5222/13  |
-| Tinsae Shemalise  | UGR/6075/13  |
+## Screenshots
+Below are the screenshots of the app:
+
+<img src='screen_shots/Splash screen.png'>&nbsp;&nbsp;<img src='screen_shots/Login screen.png'>
+<img src='screen_shots/Signup screen.png'>
+<img src='screen_shots/Home screen.png'>
+<img src='screen_shots/League screen.png'>
+<img src="screen_shots/League's Team screen.png">
+<img src='screen_shots/Join League screen.png'>
+<img src='screen_shots/Create League screen.png'>
+<img src='screen_shots/Team selection screen.png'>
+<img src='screen_shots/Player selection screen.png'>
+<img src='screen_shots/Player details screen.png'>
+<img src='screen_shots/Fixtures screen.png'>
+<img src='screen_shots/Account Management screen.png'>
+<img src='screen_shots/Change password screen.png'>
+<img src='screen_shots/Delete Account screen.png'>
+
+
